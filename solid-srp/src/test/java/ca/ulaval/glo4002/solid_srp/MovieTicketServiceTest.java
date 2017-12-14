@@ -11,28 +11,30 @@ import org.mockito.runners.MockitoJUnitRunner;
 
 @RunWith(MockitoJUnitRunner.class)
 public class MovieTicketServiceTest {
+	// MovieTicket ticket;
+	// TicketFactory factory;
 
-    @Mock
-    private TicketPrinter printer;
+	@Mock
+	private TicketPrinter printer;
 
-    @InjectMocks
-    private MovieTicketService service;
+	@InjectMocks
+	private MovieTicketService service;
 
-    @Test
-    public void canPrintAChildTicket() {
-        final int childAge = 9;
+	@Test
+	public void canPrintAChildTicket() {
+		final int childAge = 9;
 
-        service.generateMovieTicket(childAge);
+		service.generateMovieTicket(childAge, false, true);
 
-        verify(printer).print(isA(ChildMovieTicket.class));
-    }
+		verify(printer).print(isA(ChildMovieTicket.class));
+	}
 
-    @Test
-    public void canPrintARegularTicket() {
-        final int notAChildAge = 11;
+	@Test
+	public void canPrintARegularTicket() {
+		final int notAChildAge = 11;
 
-        service.generateMovieTicket(notAChildAge);
+		service.generateMovieTicket(notAChildAge, false, true);
 
-        verify(printer).print(isA(RegularMovieTicket.class));
-    }
+		verify(printer).print(isA(RegularMovieTicket.class));
+	}
 }
